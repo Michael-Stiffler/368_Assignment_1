@@ -83,22 +83,27 @@ public class Test {
         //and checks if that spot is taken or not 
         
         int currentPositionSelected = 0;
-        Scanner scanner = new Scanner(System.in);
-                boolean pickedAValidPos = false;
+        boolean pickedAValidPos = false;
 
-                while (!pickedAValidPos) {
+        while (!pickedAValidPos) {
 
-                    System.out.println("Enter a position you want to move to (1-9)");
-                    currentPositionSelected = scanner.nextInt();
-                    int[] position = indexOf2DArray(currentPositionSelected);
-                    if (currentPositionSelected < 10 && currentPositionSelected > 0
-                            && board[position[0]][position[1]] == ' ') {
-                        pickedAValidPos = true;
-                    } else {
-                        System.out.println("That spot cannot be picked!");
-                        System.out.println("Try again!");
-                    }
+            System.out.println("Enter a position you want to move to (1-9)");
+            Scanner scanner = new Scanner(System.in);
+            try {
+                currentPositionSelected = scanner.nextInt();
+                int[] position = indexOf2DArray(currentPositionSelected);
+                if (currentPositionSelected < 10 && currentPositionSelected > 0
+                        && board[position[0]][position[1]] == ' ') {
+                    pickedAValidPos = true;
+                } else {
+                    System.out.println("That spot cannot be picked!");
+                    System.out.println("Try again!");
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid number or character! ...Enter a number between (1-9)");
+            }
+        }
+        
         return currentPositionSelected;
     }
 
